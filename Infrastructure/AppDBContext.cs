@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Base;
@@ -19,6 +20,10 @@ namespace Infrastructure
         #region DbSet
         public DbSet<UserAccount> Users { get; set; }
         public DbSet<Roles> Roles { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<PremiumPackage> PremiumPackages { get; set; }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
@@ -32,35 +37,97 @@ namespace Infrastructure
 
 
         #endregion
-
         public override int SaveChanges()
         {
-            var entries = ChangeTracker.Entries<BaseEntity>();
-            foreach (var entry in entries)
+            var utcNow = DateTime.UtcNow;
+
+            foreach (var e in ChangeTracker.Entries<BaseEntity>())
             {
-                if (entry.State == EntityState.Modified)
+                switch (e.State)
                 {
-                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                    case EntityState.Added:
+                        e.Entity.CreatedAt = utcNow;   // tạo mới
+                        e.Entity.UpdatedAt = utcNow;
+                        break;
+
+                    case EntityState.Modified:
+                        e.Property(p => p.CreatedAt).IsModified = false; // giữ nguyên
+                        e.Entity.UpdatedAt = utcNow;    // cập nhật
+                        break;
                 }
             }
             return base.SaveChanges();
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Roles>()
-                .HasMany(r => r.Users)
-                .WithOne()
-                .HasForeignKey(u => u.RoleId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // lấy tất cả kiểu kế thừa BaseEntity
+            var baseTypes = modelBuilder.Model.GetEntityTypes()
+                              .Where(t => typeof(BaseEntity).IsAssignableFrom(t.ClrType));
+
+            foreach (var t in baseTypes)
+            {
+                modelBuilder.Entity(t.ClrType).Property<DateTime>("CreatedAt")
+                            .HasDefaultValueSql("GETUTCDATE()");   // mặc định khi INSERT
+
+                modelBuilder.Entity(t.ClrType).Property<bool>("IsDeleted")
+                            .HasDefaultValue(false);
+            }
 
             modelBuilder.Entity<Roles>()
                 .HasMany(r => r.Users)
                 .WithOne(u => u.Role)
                 .HasForeignKey(u => u.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Payment - User
+            modelBuilder.Entity<Payment>()
+                .HasOne(p => p.UserAccount)
+                .WithMany(u => u.Payments)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Roles>()
+            //    .HasMany(r => r.Users)
+            //    .WithOne(u => u.Role)
+            //    .HasForeignKey(u => u.RoleId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+
+            // Payment - Order
+            modelBuilder.Entity<Payment>()
+                .HasOne(p => p.Order)
+                .WithMany(o => o.Payments)
+                .HasForeignKey(p => p.OrderId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Payment - PremiumPackage
+            modelBuilder.Entity<Payment>()
+                .HasOne(p => p.PremiumPackage)
+                .WithMany(pp => pp.Payments)
+                .HasForeignKey(p => p.PremiumPackageId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.UserAccount)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.Property(p => p.Description).HasMaxLength(500);
+                entity.Property(p => p.BuyerName).HasMaxLength(200);
+                entity.Property(p => p.BuyerEmail).HasMaxLength(200);
+                entity.Property(p => p.BuyerPhone).HasMaxLength(20);
+                entity.Property(p => p.BuyerAddress).HasMaxLength(500);
+                entity.Property(p => p.CancelUrl).HasMaxLength(1000);
+                entity.Property(p => p.ReturnUrl).HasMaxLength(1000);
+                entity.Property(p => p.PaymentUrl).HasMaxLength(1000);
+            });
+
 
 
             modelBuilder.Entity<Roles>().HasData(
@@ -71,6 +138,54 @@ namespace Infrastructure
             // Cấu hình composite key cho ProductCategorySize
             modelBuilder.Entity<ProductCategorySize>()
                 .HasKey(pcs => new { pcs.CategoryId, pcs.SizeId });
+
+            // Cấu hình ID kiểu Guid + Identity cho bảng Product*
+            void ConfigGuidEntity<TEntity>(ModelBuilder mb, string keyName) where TEntity : class
+            {
+                mb.Entity<TEntity>(b =>
+                {
+                    b.HasKey(keyName);
+                    b.Property<Guid>(keyName)
+                     .ValueGeneratedOnAdd()
+                     .HasColumnType("uniqueidentifier");
+                });
+            }
+            ConfigGuidEntity<Product>(modelBuilder, nameof(Product.ProductId));
+            ConfigGuidEntity<ProductBrand>(modelBuilder, nameof(ProductBrand.BrandId));
+            ConfigGuidEntity<ProductCategory>(modelBuilder, nameof(ProductCategory.CategoryId));
+            ConfigGuidEntity<ProductColor>(modelBuilder, nameof(ProductColor.ColorId));
+            ConfigGuidEntity<ProductMaterial>(modelBuilder, nameof(ProductMaterial.MaterialId));
+            ConfigGuidEntity<ProductSize>(modelBuilder, nameof(ProductSize.SizeId));
+            ConfigGuidEntity<ProductStyle>(modelBuilder, nameof(ProductStyle.StyleId));
+            ConfigGuidEntity<ProductType>(modelBuilder, nameof(ProductType.TypeId));
+
+            modelBuilder.Entity<ProductBrand>()
+        .Property(b => b.IsDeleted)
+        .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductColor>()
+                .Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductMaterial>()
+                .Property(m => m.IsDeleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductSize>()
+                .Property(s => s.IsDeleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductCategory>()
+                .Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductStyle>()
+                .Property(s => s.IsDeleted)
+                .HasDefaultValue(false);
+
+            modelBuilder.Entity<ProductType>()
+                .Property(t => t.IsDeleted)
+                .HasDefaultValue(false);
 
             // Cấu hình quan hệ cho Product
             modelBuilder.Entity<Product>()
@@ -114,6 +229,6 @@ namespace Infrastructure
                 .WithOne(pcs => pcs.Size)
                 .HasForeignKey(pcs => pcs.SizeId);
         }
-
+        
     }
 }

@@ -6,12 +6,16 @@ using Infrastructure;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using VaccinceCenter.Repositories.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //jwt
 builder.Services.Configure<JwtSetting>(
@@ -22,13 +26,34 @@ var key = Encoding.ASCII.GetBytes(jwtSettings.SecretKey);
 builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings"));
 
+builder.Services.Configure<PayOsSetting>(builder.Configuration.GetSection("PayOsConfig"));
+
 
 //DI Service
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.AddHttpClient<PayOsService>();
+
 
 //DI Repository
+builder.Services.AddScoped(typeof(GenericRepository<>));
+
 builder.Services.AddScoped<UserAccountRepository>();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductBrandRepository>();
+builder.Services.AddScoped<ProductCategoryRepository>();
+builder.Services.AddScoped<ProductColorRepository>();
+builder.Services.AddScoped<ProductMaterialRepository>();
+builder.Services.AddScoped<ProductSizeRepository>();
+builder.Services.AddScoped<ProductStyleRepository>();
+builder.Services.AddScoped<ProductTypeRepository>();
+
+
+builder.Services.AddScoped<PaymentRepository>();
+
 
 builder.Services.AddCors(options =>
 {
