@@ -7,88 +7,88 @@
 ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
-**Formale** là nền tảng thương mại điện tử thời trang kết hợp trí tuệ nhân tạo (AI) để gợi ý trang phục phù hợp với phong cách người dùng.
+**Formale** is a fashion e-commerce platform integrated with Artificial Intelligence (AI) to suggest outfits that match users' personal styles.
 
-[Tính năng](#-tính-năng-chính) •
-[Cài đặt](#-cài-đặt) •
+[Features](#-key-features) •
+[Installation](#-installation) •
 [API Endpoints](#-api-endpoints) •
-[Kiến trúc](#-kiến-trúc-hệ-thống) •
-[Đóng góp](#-đóng-góp)
+[Architecture](#-system-architecture) •
+[Contributing](#-contributing)
 
 </div>
 
 ---
 
-## 📋 Mục lục
+## 📋 Table of Contents
 
-- [Tính năng chính](#-tính-năng-chính)
-- [Công nghệ sử dụng](#-công-nghệ-sử-dụng)
-- [Kiến trúc hệ thống](#-kiến-trúc-hệ-thống)
-- [Cấu trúc dự án](#-cấu-trúc-dự-án)
-- [Cơ sở dữ liệu](#-cơ-sở-dữ-liệu)
-- [Cài đặt](#-cài-đặt)
-- [Cấu hình](#-cấu-hình)
+- [Key Features](#-key-features)
+- [Technologies Used](#-technologies-used)
+- [System Architecture](#-system-architecture)
+- [Project Structure](#-project-structure)
+- [Database](#-database)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
 - [API Endpoints](#-api-endpoints)
-- [Xác thực & Phân quyền](#-xác-thực--phân-quyền)
-- [Tích hợp AI](#-tích-hợp-ai)
-- [Thanh toán](#-thanh-toán)
-- [Đóng góp](#-đóng-góp)
+- [Authentication & Authorization](#-authentication--authorization)
+- [AI Integration](#-ai-integration)
+- [Payment](#-payment)
+- [Contributing](#-contributing)
 
 ---
 
-## ✨ Tính năng chính
+## ✨ Key Features
 
-### 🛍️ **Thương mại điện tử**
-- Quản lý sản phẩm thời trang (quần áo, giày dép, phụ kiện)
-- Giỏ hàng và đặt hàng trực tuyến
-- Thanh toán tích hợp PayOS
-- Đánh giá và phản hồi sản phẩm
+### 🛍️ **E-commerce**
+- Fashion product management (clothing, footwear, accessories)
+- Shopping cart and online ordering
+- Integrated PayOS payment gateway
+- Product reviews and feedback
 
-### 🤖 **Gợi ý trang phục bằng AI**
-- Phân tích phong cách từ mô tả ngôn ngữ tự nhiên
-- Tự động gợi ý bộ trang phục phù hợp (Tops + Bottoms + Footwear + Accessories)
-- Kết hợp sản phẩm từ tủ đồ cá nhân và hệ thống
-- Lưu và quản lý các bộ combo trang phục
+### 🤖 **AI-Powered Outfit Suggestions**
+- Style analysis from natural language descriptions
+- Automatic outfit suggestions (Tops + Bottoms + Footwear + Accessories)
+- Combines products from personal closet and system inventory
+- Save and manage outfit combos
 
-### 👤 **Quản lý người dùng**
-- Đăng ký với xác thực OTP qua email
-- Đăng nhập bằng tài khoản hoặc Google OAuth 2.0
-- Hệ thống phân quyền (Admin, User, Manager)
-- Gói Premium với các tính năng nâng cao
+### 👤 **User Management**
+- Registration with OTP email verification
+- Login via account or Google OAuth 2.0
+- Role-based authorization system (Admin, User, Manager)
+- Premium packages with advanced features
 
-### 📦 **Tủ đồ cá nhân (Virtual Closet)**
-- Lưu trữ sản phẩm yêu thích
-- Quản lý các bộ outfit đã tạo
-- Tìm kiếm và lọc sản phẩm trong tủ đồ
+### 📦 **Virtual Closet**
+- Store favorite products
+- Manage created outfits
+- Search and filter products in closet
 
 ---
 
-## 🛠 Công nghệ sử dụng
+## 🛠 Technologies Used
 
 ### Backend Framework
-| Công nghệ | Phiên bản | Mô tả |
+| Technology | Version | Description |
 |-----------|-----------|-------|
-| **.NET** | 8.0 | Framework chính |
-| **Entity Framework Core** | 9.0 | ORM cho cơ sở dữ liệu |
-| **SQL Server** | - | Cơ sở dữ liệu quan hệ |
+| **.NET** | 8.0 | Main framework |
+| **Entity Framework Core** | 9.0 | Database ORM |
+| **SQL Server** | - | Relational database |
 
 ### Authentication & Security
-| Công nghệ | Mô tả |
+| Technology | Description |
 |-----------|-------|
 | **JWT Bearer** | Token-based authentication |
 | **Google OAuth 2.0** | Social login |
-| **OTP via Email** | Xác thực tài khoản |
+| **OTP via Email** | Account verification |
 
-### Tích hợp bên thứ ba
-| Dịch vụ | Mô tả |
+### Third-party Integrations
+| Service | Description |
 |---------|-------|
-| **PayOS** | Cổng thanh toán Việt Nam |
-| **Cloudinary** | Lưu trữ và quản lý hình ảnh |
-| **OpenRouter AI** | Gợi ý trang phục bằng AI (DeepSeek model) |
-| **SMTP (MimeKit)** | Gửi email xác thực |
+| **PayOS** | Vietnam payment gateway |
+| **Cloudinary** | Image storage and management |
+| **OpenRouter AI** | AI outfit suggestions (DeepSeek model) |
+| **SMTP (MimeKit)** | Email verification service |
 
-### Thư viện hỗ trợ
-| Thư viện | Phiên bản | Mô tả |
+### Supporting Libraries
+| Library | Version | Description |
 |----------|-----------|-------|
 | **AutoMapper** | 14.0 | Object mapping |
 | **FluentValidation** | 12.0 | Data validation |
@@ -98,9 +98,9 @@
 
 ---
 
-## 🏗 Kiến trúc hệ thống
+## 🏗 System Architecture
 
-Dự án được xây dựng theo **Clean Architecture** với 4 layers:
+The project is built following **Clean Architecture** with 4 layers:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -122,7 +122,7 @@ Dự án được xây dựng theo **Clean Architecture** với 4 layers:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Luồng dữ liệu
+### Data Flow
 
 ```
 Client Request → Controller → Service → Repository → Database
@@ -134,23 +134,23 @@ Client Request → Controller → Service → Repository → Database
 
 ---
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 Formale_EXE201/
 ├── 📂 API/                          # Presentation Layer
 │   ├── Controllers/                 # REST API Controllers
-│   │   ├── AuthController.cs        # Xác thực
-│   │   ├── ProductController.cs     # Sản phẩm
-│   │   ├── CartController.cs        # Giỏ hàng
-│   │   ├── OrderController.cs       # Đơn hàng
-│   │   ├── PaymentController.cs     # Thanh toán
-│   │   ├── OutfitController.cs      # Gợi ý trang phục AI
-│   │   ├── UserClosetController.cs  # Tủ đồ cá nhân
-│   │   ├── FeedbackController.cs    # Đánh giá
+│   │   ├── AuthController.cs        # Authentication
+│   │   ├── ProductController.cs     # Products
+│   │   ├── CartController.cs        # Shopping Cart
+│   │   ├── OrderController.cs       # Orders
+│   │   ├── PaymentController.cs     # Payments
+│   │   ├── OutfitController.cs      # AI Outfit Suggestions
+│   │   ├── UserClosetController.cs  # Virtual Closet
+│   │   ├── FeedbackController.cs    # Reviews
 │   │   └── ...
 │   ├── Mapper/
-│   │   └── AutoMapperProfile.cs     # Cấu hình AutoMapper
+│   │   └── AutoMapperProfile.cs     # AutoMapper Configuration
 │   ├── Properties/
 │   │   └── launchSettings.json
 │   ├── Program.cs                   # Application entry point
@@ -220,7 +220,7 @@ Formale_EXE201/
 
 ---
 
-## 🗄 Cơ sở dữ liệu
+## 🗄 Database
 
 ### Entity Relationship Diagram
 
@@ -272,7 +272,7 @@ Formale_EXE201/
 └──────────────────┘       └──────────────────┘
 ```
 
-### Các Entity chính
+### Main Entities
 
 #### 👤 **UserAccount**
 ```csharp
@@ -290,7 +290,7 @@ Formale_EXE201/
 - BrandId, ColorId, StyleId, CategoryId, MaterialId, TypeId
 - IsSystemCreated, UserId
 - TotalFeedbacks, AverageRating
-- IsDeleted, CreatedAt, UpdatedAt (từ BaseEntity)
+- IsDeleted, CreatedAt, UpdatedAt (from BaseEntity)
 ```
 
 #### 🛒 **Order & OrderItem**
@@ -338,50 +338,50 @@ enum PremiumPackageTier { Premium, Gold }
 
 ---
 
-## 🚀 Cài đặt
+## 🚀 Installation
 
-### Yêu cầu hệ thống
-- **.NET SDK** 8.0 trở lên
-- **SQL Server** 2019 trở lên
-- **Visual Studio 2022** hoặc **VS Code**
+### System Requirements
+- **.NET SDK** 8.0 or higher
+- **SQL Server** 2019 or higher
+- **Visual Studio 2022** or **VS Code**
 - **Git**
 
-### Bước 1: Clone repository
+### Step 1: Clone repository
 ```bash
 git clone https://github.com/your-username/Formale_EXE201.git
 cd Formale_EXE201
 ```
 
-### Bước 2: Restore packages
+### Step 2: Restore packages
 ```bash
 dotnet restore
 ```
 
-### Bước 3: Cấu hình appsettings.json
-Tạo file `appsettings.json` trong thư mục `API/` (xem phần [Cấu hình](#-cấu-hình))
+### Step 3: Configure appsettings.json
+Create `appsettings.json` file in `API/` folder (see [Configuration](#-configuration))
 
-### Bước 4: Áp dụng migrations
+### Step 4: Apply migrations
 ```bash
 cd API
 dotnet ef database update --project ../Infrastructure
 ```
 
-### Bước 5: Chạy ứng dụng
+### Step 5: Run application
 ```bash
 dotnet run --project API
 ```
 
-### Bước 6: Truy cập Swagger
-Mở trình duyệt và truy cập:
+### Step 6: Access Swagger
+Open browser and navigate to:
 ```
 https://localhost:5001/swagger
 ```
 
 ---
 
-## ⚙ Cấu hình
+## ⚙ Configuration
 
-Tạo file `appsettings.json` trong thư mục `API/`:
+Create `appsettings.json` file in `API/` folder:
 
 ```json
 {
@@ -435,15 +435,15 @@ Tạo file `appsettings.json` trong thư mục `API/`:
 }
 ```
 
-### Hướng dẫn lấy credentials
+### How to Get Credentials
 
-| Dịch vụ | Hướng dẫn |
+| Service | Guide |
 |---------|-----------|
-| **PayOS** | Đăng ký tại [payos.vn](https://payos.vn) |
-| **Google OAuth** | Tạo project tại [Google Cloud Console](https://console.cloud.google.com) |
-| **OpenRouter** | Đăng ký tại [openrouter.ai](https://openrouter.ai) |
-| **Cloudinary** | Đăng ký tại [cloudinary.com](https://cloudinary.com) |
-| **Gmail SMTP** | Tạo App Password trong Google Account Settings |
+| **PayOS** | Register at [payos.vn](https://payos.vn) |
+| **Google OAuth** | Create project at [Google Cloud Console](https://console.cloud.google.com) |
+| **OpenRouter** | Register at [openrouter.ai](https://openrouter.ai) |
+| **Cloudinary** | Register at [cloudinary.com](https://cloudinary.com) |
+| **Gmail SMTP** | Create App Password in Google Account Settings |
 
 ---
 
@@ -451,130 +451,130 @@ Tạo file `appsettings.json` trong thư mục `API/`:
 
 ### 🔐 Authentication (`/api/Auth`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `POST` | `/register` | Đăng ký tài khoản mới | ❌ |
-| `POST` | `/register-manager` | Tạo tài khoản Manager | Admin |
-| `POST` | `/login` | Đăng nhập | ❌ |
-| `POST` | `/change-password` | Đổi mật khẩu (cần OTP) | ✅ |
-| `POST` | `/logout` | Đăng xuất | ✅ |
-| `POST` | `/active-account` | Kích hoạt tài khoản bằng OTP | ❌ |
-| `POST` | `/resend-otp` | Gửi lại mã OTP | ❌ |
-| `GET` | `/signin-google` | Đăng nhập bằng Google | ❌ |
+| `POST` | `/register` | Register new account | ❌ |
+| `POST` | `/register-manager` | Create Manager account | Admin |
+| `POST` | `/login` | Login | ❌ |
+| `POST` | `/change-password` | Change password (requires OTP) | ✅ |
+| `POST` | `/logout` | Logout | ✅ |
+| `POST` | `/active-account` | Activate account with OTP | ❌ |
+| `POST` | `/resend-otp` | Resend OTP code | ❌ |
+| `GET` | `/signin-google` | Login with Google | ❌ |
 
 ### 👥 Users (`/api/User`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/` | Lấy danh sách users | Admin |
-| `GET` | `/get-user-info` | Lấy thông tin user hiện tại | ✅ |
-| `PUT` | `/update-profile` | Cập nhật profile | User |
-| `DELETE` | `/{userId}` | Xóa user | Admin |
+| `GET` | `/` | Get all users | Admin |
+| `GET` | `/get-user-info` | Get current user info | ✅ |
+| `PUT` | `/update-profile` | Update profile | User |
+| `DELETE` | `/{userId}` | Delete user | Admin |
 | `POST` | `/ban/{userId}` | Ban user | Admin |
 | `POST` | `/unban/{userId}` | Unban user | Admin |
 
 ### 👕 Products (`/api/Product`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/` | Lấy tất cả sản phẩm | ❌ |
-| `GET` | `/{id}` | Lấy sản phẩm theo ID | ❌ |
-| `POST` | `/` | Tạo sản phẩm mới | ✅ |
-| `PUT` | `/{id}` | Cập nhật sản phẩm | ✅ |
-| `PUT` | `/update-image/{id}` | Cập nhật ảnh sản phẩm | ✅ |
-| `DELETE` | `/{id}` | Xóa sản phẩm (soft delete) | Admin |
-| `GET` | `/search` | Tìm kiếm với filter & phân trang | ❌ |
-| `POST` | `/suggest` | Gợi ý trang phục AI | Premium |
+| `GET` | `/` | Get all products | ❌ |
+| `GET` | `/{id}` | Get product by ID | ❌ |
+| `POST` | `/` | Create new product | ✅ |
+| `PUT` | `/{id}` | Update product | ✅ |
+| `PUT` | `/update-image/{id}` | Update product image | ✅ |
+| `DELETE` | `/{id}` | Delete product (soft delete) | Admin |
+| `GET` | `/search` | Search with filter & pagination | ❌ |
+| `POST` | `/suggest` | AI outfit suggestion | Premium |
 
 ### 🛒 Cart (`/api/Cart`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/` | Lấy giỏ hàng hiện tại | ✅ |
-| `POST` | `/add-item/{productId}` | Thêm sản phẩm vào giỏ | ✅ |
-| `POST` | `/reduce-item/{productId}` | Giảm số lượng sản phẩm | ✅ |
-| `GET` | `/preview` | Xem trước đơn hàng | ✅ |
-| `DELETE` | `/remove-item/{productId}` | Xóa sản phẩm khỏi giỏ | ✅ |
+| `GET` | `/` | Get current cart | ✅ |
+| `POST` | `/add-item/{productId}` | Add product to cart | ✅ |
+| `POST` | `/reduce-item/{productId}` | Reduce product quantity | ✅ |
+| `GET` | `/preview` | Preview order | ✅ |
+| `DELETE` | `/remove-item/{productId}` | Remove product from cart | ✅ |
 
 ### 📦 Orders (`/api/Order`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `POST` | `/create-from-cart` | Tạo đơn hàng từ giỏ hàng | ✅ |
-| `GET` | `/all` | Lấy tất cả đơn hàng | Admin |
-| `GET` | `/{orderId}` | Lấy đơn hàng theo ID | Admin |
+| `POST` | `/create-from-cart` | Create order from cart | ✅ |
+| `GET` | `/all` | Get all orders | Admin |
+| `GET` | `/{orderId}` | Get order by ID | Admin |
 
 ### 💳 Payments (`/api/Payment`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/getpayment` | Lấy tất cả payments | Admin |
-| `GET` | `/getpayment-byuser` | Lấy payments của user | ✅ |
-| `POST` | `/create` | Tạo payment mới | ✅ |
-| `POST` | `/search-transaction` | Tìm theo transaction ID | ✅ |
-| `POST` | `/cancel` | Hủy payment | ✅ |
-| `PUT` | `/update-status/{paymentId}` | Cập nhật trạng thái | Admin |
-| `GET` | `/check-status/{orderCode}` | Kiểm tra trạng thái PayOS | ✅ |
-| `GET` | `/premium-payments` | Payments gói Premium | Admin |
-| `POST` | `/confirm-premium-payment` | Xác nhận thanh toán Premium | Admin |
+| `GET` | `/getpayment` | Get all payments | Admin |
+| `GET` | `/getpayment-byuser` | Get user's payments | ✅ |
+| `POST` | `/create` | Create new payment | ✅ |
+| `POST` | `/search-transaction` | Search by transaction ID | ✅ |
+| `POST` | `/cancel` | Cancel payment | ✅ |
+| `PUT` | `/update-status/{paymentId}` | Update status | Admin |
+| `GET` | `/check-status/{orderCode}` | Check PayOS status | ✅ |
+| `GET` | `/premium-payments` | Premium package payments | Admin |
+| `POST` | `/confirm-premium-payment` | Confirm Premium payment | Admin |
 
 ### 👔 Outfit - AI Suggestion (`/api/Outfit`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `POST` | `/suggest` | Gợi ý outfit từ closet | Premium |
-| `POST` | `/save` | Lưu combo gợi ý | ✅ |
-| `GET` | `/{comboId}` | Lấy chi tiết combo | ✅ |
-| `PUT` | `/{comboId}/replace-item` | Thay thế item trong combo | ✅ |
-| `GET` | `/user-combos` | Lấy danh sách combos của user | ✅ |
-| `PUT` | `/update-combo-info` | Cập nhật tên/mô tả combo | ✅ |
+| `POST` | `/suggest` | Suggest outfit from closet | Premium |
+| `POST` | `/save` | Save suggested combo | ✅ |
+| `GET` | `/{comboId}` | Get combo details | ✅ |
+| `PUT` | `/{comboId}/replace-item` | Replace item in combo | ✅ |
+| `GET` | `/user-combos` | Get user's combos list | ✅ |
+| `PUT` | `/update-combo-info` | Update combo name/description | ✅ |
 
 ### 🗄️ User Closet (`/api/UserCloset`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/` | Lấy tất cả closets | Admin |
-| `GET` | `/{closetId}` | Lấy closet theo ID | User |
-| `DELETE` | `/{closetId}` | Xóa item khỏi closet | User |
-| `GET` | `/my-closet` | Lấy closet của user | ✅ |
-| `GET` | `/my-items` | Lấy sản phẩm trong closet | ✅ |
-| `GET` | `/my-combos` | Lấy outfit combos | ✅ |
-| `GET` | `/search` | Tìm kiếm trong closet | ✅ |
+| `GET` | `/` | Get all closets | Admin |
+| `GET` | `/{closetId}` | Get closet by ID | User |
+| `DELETE` | `/{closetId}` | Remove item from closet | User |
+| `GET` | `/my-closet` | Get user's closet | ✅ |
+| `GET` | `/my-items` | Get products in closet | ✅ |
+| `GET` | `/my-combos` | Get outfit combos | ✅ |
+| `GET` | `/search` | Search in closet | ✅ |
 
 ### ⭐ Feedback (`/api/Feedback`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `POST` | `/create` | Tạo đánh giá mới | ✅ |
-| `PUT` | `/update` | Cập nhật đánh giá | ✅ |
-| `GET` | `/rating/{productId}` | Lấy thống kê rating | ❌ |
-| `GET` | `/` | Lấy feedbacks của sản phẩm | ❌ |
-| `GET` | `/user-feedbacks` | Lấy feedbacks của user | ✅ |
-| `DELETE` | `/{feedbackId}` | Xóa feedback | Admin |
-| `GET` | `/all` | Lấy tất cả feedbacks | Admin |
+| `POST` | `/create` | Create new review | ✅ |
+| `PUT` | `/update` | Update review | ✅ |
+| `GET` | `/rating/{productId}` | Get rating statistics | ❌ |
+| `GET` | `/` | Get product feedbacks | ❌ |
+| `GET` | `/user-feedbacks` | Get user's feedbacks | ✅ |
+| `DELETE` | `/{feedbackId}` | Delete feedback | Admin |
+| `GET` | `/all` | Get all feedbacks | Admin |
 
 ### 💎 Premium Packages (`/api/PremiunPackage`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/` | Lấy danh sách packages | ❌ |
-| `POST` | `/{packageId}` | Lấy package theo ID | ❌ |
-| `POST` | `/update/{packageId}` | Cập nhật package | Admin |
-| `POST` | `/buy` | Mua gói Premium | ✅ |
-| `POST` | `/update-premium` | Gán Premium cho user | Admin |
+| `GET` | `/` | Get packages list | ❌ |
+| `POST` | `/{packageId}` | Get package by ID | ❌ |
+| `POST` | `/update/{packageId}` | Update package | Admin |
+| `POST` | `/buy` | Purchase Premium package | ✅ |
+| `POST` | `/update-premium` | Assign Premium to user | Admin |
 
 ### 📊 Analytics (`/api/Log`)
 
-| Method | Endpoint | Mô tả | Auth |
+| Method | Endpoint | Description | Auth |
 |--------|----------|-------|------|
-| `GET` | `/all` | Lấy tất cả lượt truy cập | Admin |
-| `GET` | `/today` | Lượt truy cập hôm nay | Admin |
-| `GET` | `/{date}` | Lượt truy cập theo ngày | Admin |
-| `GET` | `/registrations-this-month` | Số đăng ký trong tháng | Admin |
+| `GET` | `/all` | Get all visits | Admin |
+| `GET` | `/today` | Today's visits | Admin |
+| `GET` | `/{date}` | Visits by date | Admin |
+| `GET` | `/registrations-this-month` | Registrations this month | Admin |
 
 ### 🏷️ Product Attributes
 
-Mỗi attribute đều có CRUD endpoints:
+Each attribute has CRUD endpoints:
 
 | Controller | Endpoint Base |
 |------------|---------------|
@@ -587,7 +587,7 @@ Mỗi attribute đều có CRUD endpoints:
 
 ---
 
-## 🔐 Xác thực & Phân quyền
+## 🔐 Authentication & Authorization
 
 ### JWT Authentication
 
@@ -597,20 +597,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ### Roles
 
-| RoleId | Role Name | Quyền hạn |
+| RoleId | Role Name | Permissions |
 |--------|-----------|-----------|
-| 1 | **Admin** | Toàn quyền hệ thống |
-| 2 | **User** | Mua hàng, đánh giá, tủ đồ |
-| 3 | **Manager** | Quản lý sản phẩm, đơn hàng |
+| 1 | **Admin** | Full system access |
+| 2 | **User** | Shopping, reviews, closet |
+| 3 | **Manager** | Manage products, orders |
 
-### Luồng xác thực
+### Authentication Flow
 
 ```
-1. Đăng ký → Gửi OTP qua email
-2. Xác nhận OTP → Kích hoạt tài khoản
-3. Đăng nhập → Nhận JWT token
-4. Request API → Gửi Bearer token
-5. Đổi mật khẩu → Xác nhận OTP mới
+1. Register → Send OTP via email
+2. Confirm OTP → Activate account
+3. Login → Receive JWT token
+4. API Request → Send Bearer token
+5. Change password → Confirm with new OTP
 ```
 
 ### Google OAuth Flow
@@ -618,22 +618,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 1. Client redirect → /api/Auth/signin-google
 2. Google authentication
-3. Callback với ID token
-4. Server xác thực token
-5. Tạo/cập nhật user
-6. Trả về JWT token
+3. Callback with ID token
+4. Server validates token
+5. Create/update user
+6. Return JWT token
 ```
 
 ---
 
-## 🤖 Tích hợp AI
+## 🤖 AI Integration
 
-### Kiến trúc AI Outfit Suggestion
+### AI Outfit Suggestion Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     User Input                              │
-│     "Tôi muốn mặc đồ đi dự tiệc sang trọng"                │
+│     "I want to wear something for a fancy party"           │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
@@ -646,9 +646,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
                            ▼ Style: "Formal"
 ┌─────────────────────────────────────────────────────────────┐
 │                    Outfit Service                           │
-│   1. Lấy products từ User Closet theo Style                 │
-│   2. Fallback: Lấy từ System Products nếu thiếu             │
-│   3. Tạo combo: Tops + Bottoms + Footwear + Accessories     │
+│   1. Get products from User Closet by Style                 │
+│   2. Fallback: Get from System Products if missing          │
+│   3. Create combo: Tops + Bottoms + Footwear + Accessories  │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
@@ -664,19 +664,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Các Style hỗ trợ
+### Supported Styles
 
-| Style | Mô tả |
+| Style | Description |
 |-------|-------|
-| **Casual** | Trang phục thường ngày |
-| **Formal** | Trang phục lịch sự, công sở |
-| **Streetwear** | Phong cách đường phố |
-| **Sporty** | Trang phục thể thao |
-| **Vintage** | Phong cách cổ điển |
-| **Minimalist** | Tối giản |
-| **Bohemian** | Phong cách boho |
+| **Casual** | Everyday wear |
+| **Formal** | Business, office wear |
+| **Streetwear** | Street style |
+| **Sporty** | Athletic wear |
+| **Vintage** | Classic style |
+| **Minimalist** | Minimalist |
+| **Bohemian** | Boho style |
 
-### Sử dụng API
+### API Usage
 
 ```http
 POST /api/Outfit/suggest
@@ -684,7 +684,7 @@ Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-  "prompt": "Tôi muốn mặc đồ đi cafe với bạn bè vào cuối tuần"
+  "prompt": "I want to wear something casual for a weekend coffee with friends"
 }
 ```
 
@@ -708,7 +708,7 @@ Content-Type: application/json
 
 ---
 
-## 💳 Thanh toán
+## 💳 Payment
 
 ### PayOS Integration
 
@@ -741,14 +741,14 @@ Content-Type: application/json
 ### Payment Status Flow
 
 ```
-PENDING → COMPLETE (Thanh toán thành công)
-        → CANCELLED (Hủy bởi user)
-        → FAILED (Lỗi thanh toán)
+PENDING → COMPLETE (Payment successful)
+        → CANCELLED (Cancelled by user)
+        → FAILED (Payment error)
 ```
 
 ### API Usage
 
-**Tạo Payment:**
+**Create Payment:**
 ```http
 POST /api/Payment/create
 {
@@ -758,7 +758,7 @@ POST /api/Payment/create
 }
 ```
 
-**Kiểm tra trạng thái:**
+**Check Status:**
 ```http
 GET /api/Payment/check-status/{orderCode}
 ```
@@ -767,25 +767,25 @@ GET /api/Payment/check-status/{orderCode}
 
 ## 📊 Services Overview
 
-| Service | Chức năng chính |
+| Service | Main Functions |
 |---------|----------------|
-| `UserAccountService` | Đăng ký, đăng nhập, OTP, Google OAuth |
+| `UserAccountService` | Registration, login, OTP, Google OAuth |
 | `UserService` | CRUD users, profile management |
 | `ProductService` | CRUD products, search, filter |
-| `CartService` | Quản lý giỏ hàng |
-| `OrderService` | Tạo đơn hàng từ cart |
-| `PaymentService` | Quản lý thanh toán |
-| `PayOsService` | Tích hợp PayOS API |
-| `PremiumService` | Quản lý gói Premium |
-| `OutfitService` | AI gợi ý trang phục |
-| `OutfitComboItemService` | Quản lý items trong combo |
-| `UserClosetService` | Tủ đồ cá nhân |
-| `FeedbackService` | Đánh giá sản phẩm |
-| `CloudinaryService` | Upload/delete ảnh |
-| `EmailService` | Gửi email SMTP |
-| `OpenRouterService` | Gọi AI model |
-| `VisitLogService` | Analytics, thống kê |
-| `CurrentUserService` | Lấy user từ JWT claims |
+| `CartService` | Shopping cart management |
+| `OrderService` | Create orders from cart |
+| `PaymentService` | Payment management |
+| `PayOsService` | PayOS API integration |
+| `PremiumService` | Premium package management |
+| `OutfitService` | AI outfit suggestions |
+| `OutfitComboItemService` | Manage items in combo |
+| `UserClosetService` | Virtual closet |
+| `FeedbackService` | Product reviews |
+| `CloudinaryService` | Upload/delete images |
+| `EmailService` | SMTP email sending |
+| `OpenRouterService` | AI model calls |
+| `VisitLogService` | Analytics, statistics |
+| `CurrentUserService` | Get user from JWT claims |
 
 ---
 
@@ -793,26 +793,26 @@ GET /api/Payment/check-status/{orderCode}
 
 ### Swagger UI
 
-Truy cập Swagger để test API:
+Access Swagger to test API:
 ```
 https://localhost:5001/swagger
 ```
 
-### Test với JWT
+### Test with JWT
 
-1. Đăng nhập qua `/api/Auth/login`
-2. Copy token từ response
-3. Click "Authorize" trong Swagger
-4. Nhập: `Bearer {your-token}`
-5. Test các protected endpoints
+1. Login via `/api/Auth/login`
+2. Copy token from response
+3. Click "Authorize" in Swagger
+4. Enter: `Bearer {your-token}`
+5. Test protected endpoints
 
 ---
 
-## 📝 Quy ước code
+## 📝 Code Conventions
 
 ### Naming Conventions
 
-| Loại | Convention | Ví dụ |
+| Type | Convention | Example |
 |------|------------|-------|
 | Class | PascalCase | `ProductService` |
 | Method | PascalCase | `GetAllProducts()` |
@@ -823,21 +823,21 @@ https://localhost:5001/swagger
 
 ### Project Structure Rules
 
-- **Controllers**: Chỉ chứa routing và validation
+- **Controllers**: Only routing and validation
 - **Services**: Business logic
 - **Repositories**: Data access
-- **DTOs**: Data transfer, không chứa logic
+- **DTOs**: Data transfer, no logic
 - **Entities**: Domain models
 
 ---
 
-## 🤝 Đóng góp
+## 🤝 Contributing
 
 1. Fork repository
-2. Tạo feature branch (`git checkout -b feature/AmazingFeature`)
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Mở Pull Request
+5. Open Pull Request
 
 ---
 
@@ -847,7 +847,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-## 📞 Liên hệ
+## 📞 Contact
 
 - **Project Link**: [https://github.com/EXE201-Formale](https://github.com/EXE201-Formale)
 
@@ -855,7 +855,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <div align="center">
 
-**⭐ Star repo này nếu bạn thấy hữu ích! ⭐**
+**⭐ Star this repo if you find it helpful! ⭐**
 
 Made with ❤️ by Formale Team
 
